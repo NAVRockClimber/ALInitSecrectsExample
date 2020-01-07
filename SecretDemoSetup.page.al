@@ -56,6 +56,20 @@ page 70000 "Secret Demo Setup"
                     SecretHelper.DeleteSecret("Access Key Code");
                 end;
             }
+
+            action(Init)
+            {
+                Image = "Event";
+                Caption = 'Init Secret';
+                ApplicationArea = All;
+
+                trigger OnAction()
+                var
+                    SecretHelper: Codeunit "Secret Helper";
+                begin
+                    SecretHelper.InitSecret();
+                end;
+            }
         }
     }
 
