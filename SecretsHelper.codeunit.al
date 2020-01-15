@@ -6,13 +6,13 @@ codeunit 70001 "Secret Helper"
     procedure SaveSecret(KeyName: Text; SecretValue: Text)
     var
         EncryptionErr: Label 'The secret cannot be stored. The encryption is not enabled.';
-        EncrytedBuffer: Text;
+        EncryptedBuffer: Text;
     begin
         if not EncryptionEnabled() then begin
             Error(EncryptionErr);
         end;
-        EncrytedBuffer := Encrypt(SecretValue);
-        IsolatedStorage.Set(KeyName, EncrytedBuffer, DataScope::Module);
+        EncryptedBuffer := Encrypt(SecretValue);
+        IsolatedStorage.Set(KeyName, EncryptedBuffer, DataScope::Module);
     end;
 
     [NonDebuggable]
@@ -42,7 +42,7 @@ codeunit 70001 "Secret Helper"
         IsolatedStorage.Delete(KeyName, DataScope::Module);
     end;
 
-    // [NonDebuggable]
+    [NonDebuggable]
     procedure UpdateSecret()
     var
         SecretDemoSetup: Record "Secret Demo Setup";
@@ -58,11 +58,11 @@ codeunit 70001 "Secret Helper"
         end;
     end;
 
-    // [NonDebuggable]
+    [NonDebuggable]
     procedure InitSecret()
     var
         UrlForwarder: Page "Url Forwarder";
-        DescriptionTxt: Label 'Dear Customer, our service uses cloud services. You need to register and retrieve an access key. Please store this key via the setup "Update Access Key" action on the setup window.';
+        DescriptionTxt: Label 'Dear Customer, our service uses cloud services. You need to register and retrieve an access key. Please store this key via the "Update Access Key" action on the setup window.';
         UrlLabelTxt: Label 'https://navrockclimber.github.io/';
         UrlTxt: Label 'https://navrockclimber.github.io/';
     begin
